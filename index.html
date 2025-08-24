@@ -215,7 +215,7 @@
         .workgrid__item__title {
             font-family: var(--font-mono);
             font-size: 0.9rem;
-            font-weight: 400;
+            font-weight: 700;
             margin-bottom: var(--spacing-sm);
             color: var(--text-color);
             text-transform: capitalize;
@@ -258,16 +258,16 @@
         }
 
         .project-image {
-            width: 60%;
-            height: 60%;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            width: 90%;
+            height: 90%;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             font-size: 0.8rem;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .project-visual--selfcompassion {
@@ -602,7 +602,11 @@
                     </div>
                     <div class="workgrid__item__content">
                         <div class="project-visual project-visual--selfcompassion">
-                            <div class="project-image">App Screenshot</div>
+                            <div class="project-image">
+                                <video src="images/videowalkthrough.webm" controls style="width:90%;height:90%;border-radius:4px;">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
                             🤗 LLM + Streamlit
                         </div>
                         <div class="project-metrics">
@@ -841,6 +845,15 @@
             <div class="academic-links">
                 <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" target="_blank" class="contact-link">google scholar</a>
             </div>
+        </div>
+    </section>
+
+    <!-- PODCAST SECTION -->
+    <section class="podcast" id="podcast">
+        <div class="wrapper">
+            <h2>Podcast</h2>
+            <p>Coming soon: Listen to my latest thoughts on data science, product, and tech!</p>
+            <!-- Add podcast embed or links here -->
         </div>
     </section>
     <section class="contact">
