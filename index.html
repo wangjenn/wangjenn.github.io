@@ -15,6 +15,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
+        .top-nav {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            z-index: 100;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .top-nav a {
+            color: var(--primary-color);
+            background: var(--background);
+            margin-left: var(--spacing-sm);
+            text-decoration: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            opacity: 0.85;
+            transition: color 0.2s, background 0.2s, opacity 0.2s;
+        }
+        .top-nav a:hover {
+            color: var(--secondary-color);
+            background: var(--section-bg);
+            opacity: 1;
+        }
         /* CSS Variables */
         :root {
             --primary-color: #000000;
@@ -559,6 +583,15 @@
     </style>
 </head>
 <body>
+        <!-- TOP NAVIGATION -->
+        <nav class="top-nav">
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#skills">skills</a>
+            <a href="#academic-research">publications</a>
+            <a href="#podcast">podcast</a>
+            <a href="#contact">contact</a>
+        </nav>
     <!-- INTRO SECTION -->
     <section class="intro">
         <div class="intro-content">
@@ -860,20 +893,28 @@
         </section>
     </div>
 
+    <div class="wrapper">
+        <hr class="section-separator">
+    </div>
     <!-- CONTACT SECTION -->
     <!-- ACADEMIC RESEARCH SECTION -->
     <section class="academic-research" id="academic-research">
         <div class="wrapper">
-            <h2>📝 Selected Research Publications</h2>
+            <h2>Selected Research Publications</h2>
             <p><li>See <a href="https://scholar.google.com/citations?user=F3Rz0f0AAAAJ&hl=en" target="_blank" class="contact-link" style="font-weight:500;color:#a0aecd;text-decoration:underline;">Google Scholar Profile</a> for a comprehensive publication list.</p>
         </div>
     </section>
-    
+
+    <!-- Separator -->
+    <div class="wrapper">
+        <hr class="section-separator">
+    </div>
+        
     <!-- PODCAST SECTION -->
     <section class="podcast" id="podcast">
         <div class="wrapper">
-            <h2>🎙 Podcast</h2>
-            <p><li> I'm a podcast host on New Books Network</p>
+            <h2>Podcast</h2>
+            <p><li> I'm a podcast host on <a href="https://newbooksnetwork.com/" target="_blank" class="contact-link" style="font-weight:500;color:#a0aecd;text-decoration:underline;">New Books Network</a></p>
             <br
             <!-- Add podcast embed or links here -->
         </div>
@@ -898,7 +939,7 @@
                     <a href="https://github.com/wangjenn"><i class="fab fa-github"></i> github</a>
                     <a href="https://scholar.google.com/citations?user=F3Rz0f0AAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> google scholar</a>
                 </div>
-                <p>made in san francisco ❥</p>
+                <p><span style="color: #666666;">made in san francisco ❥</span></p>
             </div>
         </div>
     </section>
