@@ -100,13 +100,15 @@ Quantitative methods • Columbia
 - B.A., Psychology (with honors), University of Southern California
 - B.A., Communication, University of Southern California
 
+--- 
+
 ## Selected Publications
-See [Google Scholar Profile](https://scholar.google.com/citations?user=F3Rz0f0AAAAJ&hl=en) for a comprehensive publication list.
+- See [Google Scholar Profile](https://scholar.google.com/citations?user=F3Rz0f0AAAAJ&hl=en) for a comprehensive publication list.
 
 ---
 
 ## Podcast
-I'm a podcast host on [New Books Network](https://newbooksnetwork.com/)
+- I'm a podcast host on [New Books Network](https://newbooksnetwork.com/)
 
 ---
 

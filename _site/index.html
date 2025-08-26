@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jennifer M. Wang, Ph.D. - Product Data Scientist</title>
+    <meta name="description" content="Senior Data Scientist specializing in machine learning, product analytics, and data infrastructure.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .top-nav {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            z-index: 100;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+            background: none;
+        }
+        .top-nav a {
+            color: var(--text-color);
+            margin-left: var(--spacing-sm);
+            text-decoration: none;
+            padding: 0 6px;
+            border-radius: 0;
+            background: none;
+            opacity: 1;
+            transition: color 0.2s, opacity 0.2s;
+        }
+        .top-nav a:hover {
+            color: var(--secondary-color);
+            background: none;
+            opacity: 1;
+        }
+        /* CSS Variables */
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #a0aecd;
+            --accent-color: #2c3e50;
+            --text-color: #333333;
+            --text-light: #666666;
+            --background: #ffffff;
+            --section-bg: #f8f9fa;
+            --border-color: #e1e8ed;
+            
+            --font-main: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: 'IBM Plex Mono', Monaco, 'Cascadia Code', monospace;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 4rem;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-xs);
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color);
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 400;
+        }
+
+        /* Layout */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section {
+            padding: var(--spacing-sm) 0 var(--spacing-md) 0;
+        }
+
+        /* Intro Section (like Adrian's) */
+        .intro {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #8fa3c7 100%);
+            color: white;
+        }
+
+        .intro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .intro .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .about__title {
+            font-family: var(--font-main);
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.2;
+        }
+
+        .about__title .greet {
+            color: var(--secondary-color);
+        }
+
+        .about__content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: start;
+            text-align: left;
+        }
+
+        .about__introText {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            text-align: left;
+        }
+
+        .about__image {
+            width: 250px;
+            height: 250px;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-mono);
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Work Grid (like Adrian's) */
+        .workgrid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+            margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+            min-height: 800px;
+        }
+
+        .workgrid__item {
+            background: var(--background);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .workgrid__item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary-color);
+        }
+
+        /* Grid layout similar to Adrian's */
+        .workgrid__item--1 { grid-column: span 2; grid-row: span 2; } /* Self-compassion app (featured) */
+        .workgrid__item--2 { grid-column: span 1; grid-row: span 1; }
+        .workgrid__item--3 { grid-column: span 1; grid-row: span 1; }
+        .workgrid__item--4 { grid-column: span 2; grid-row: span 1; }
+        .workgrid__item--5 { grid-column: span 1; grid-row: span 1; }
+        .workgrid__item--6 { grid-column: span 1; grid-row: span 1; }
+        .workgrid__item--7 { grid-column: span 2; grid-row: span 1; }
+        .workgrid__item--8 { grid-column: span 1; grid-row: span 2; }
+        .workgrid__item--9 { grid-column: span 1; grid-row: span 1; }
+
+        .workgrid__item__container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: var(--spacing-md);
+            position: relative;
+        }
+
+        .workgrid__item__title {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color);
+            text-transform: capitalize;
+        }
+
+        .workgrid__item__content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .workgrid__item__content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .workgrid__item:hover .workgrid__item__content img {
+            transform: scale(1.05);
+        }
+
+        /* Project visual backgrounds with image placeholders */
+        .project-visual {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-mono);
+            font-weight: 500;
+            text-align: center;
+            position: relative;
+        }
+
+        .project-image {
+            width: 92%;
+            height: 92%;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 2px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2px;
+            font-size: 0.8rem;
+            opacity: 1;
+        }
+
+        .project-visual--selfcompassion {
+            background: linear-gradient(135deg, var(--secondary-color), #8fa3c7);
+            font-size: 1.2rem;
+        }
+
+        .project-visual--bookbub {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .project-visual--cape {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+        }
+
+        .project-visual--cruise {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .project-visual--hopelab {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .project-visual--fieldwork {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .project-visual--pipeline {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        .project-visual--academic {
+            background: linear-gradient(45deg, #434343, #000000);
+        }
+
+        /* Project metrics overlay */
+        .project-metrics {
+            position: absolute;
+            bottom: var(--spacing-sm);
+            left: var(--spacing-sm);
+            right: var(--spacing-sm);
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--spacing-xs);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .workgrid__item:hover .project-metrics {
+            opacity: 1;
+        }
+
+        .metric-highlight {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--section-bg);
+            padding: var(--spacing-md) 0;
+        }
+
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .skill-category {
+            background: white;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-xs);
+            text-transform: capitalize;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .skill-tag {
+            background: var(--section-bg);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            background: var(--section-bg);
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .skill-tag.primary {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-md) 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contact p {
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-sm) 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer__content {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .footer__content a {
+            color: white;
+            text-decoration: none;
+            margin: 0 var(--spacing-xs);
+        }
+
+        .footer__content a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .workgrid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .workgrid__item--1 { grid-column: span 2; grid-row: span 2; }
+            .workgrid__item--4 { grid-column: span 3; grid-row: span 1; }
+            .workgrid__item--7 { grid-column: span 3; grid-row: span 1; }
+
+            .about__content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .intro h1 {
+                font-size: 2.5rem;
+            }
+
+            .about__title {
+                font-size: 2rem;
+            }
+
+            .workgrid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 15px;
+            }
+
+            .workgrid__item--1 { grid-column: span 2; grid-row: span 1; }
+            .workgrid__item--4 { grid-column: span 2; grid-row: span 1; }
+            .workgrid__item--7 { grid-column: span 2; grid-row: span 1; }
+            .workgrid__item--8 { grid-column: span 1; grid-row: span 1; }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .workgrid {
+                grid-template-columns: 1fr;
+            }
+
+            .workgrid__item--1,
+            .workgrid__item--4,
+            .workgrid__item--7,
+            .workgrid__item--8 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+        <!-- TOP NAVIGATION -->
+        <nav class="top-nav">
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#skills">skills</a>
+            <a href="#academic-research">publications</a>
+            <a href="#podcast">podcast</a>
+            <a href="#contact">contact</a>
+        </nav>
+    <!-- INTRO SECTION -->
+    <section class="intro">
+        <div class="intro-content">
+            <h1>Jennifer M. Wang, Ph.D.</h1>
+            <p class="subtitle">Product Data Scientist</p>
+        </div>
+    </section>
+    <hr>
+
+    <div class="wrapper">
+        <!-- ABOUT SECTION -->
+        <section class="about">
+            <h2 class="about__title" id="about">
+                <span class="greet">Hi, I'm Jenn! ❥ </span>
+            </h2>
+            <div class="about__content">
+                <div>
+                    <p class="about__introText">
+                        I'm a <span style="color:#a0aecd;">Product Data Scientist</span>working at the intersection of analytics, UX, machine learning, and full-stack product management.<br><br>
+                        
+                        I LOVE 🖤 using data + statistics 📊 to tell compelling stories. I enjoy translating messy data into clear, actionable insights for all audiences.
+                    </p>
+                    <p class="about__introText">
+                        My unique background combines a <strong>Ph.D.</strong> in <span style="color:#a0aecd;">Quantitative Psychology</span> <span style="color:#666666;">(minor: Statistics)</span> with hands-on experience at high-growth startups and established tech companies.
+                    </p>
+                </div>
+                <div class="about__image">
+                    <img src="images/profilepic.jpeg" alt="Jennifer Wang Profile Photo" style="width:100%;height:100%;object-fit:cover;border-radius:0;" />
+                </div>
+            </div>
+        </section>
+
+    <hr>
+    <!-- PROJECTS SECTION -->
+        <section class="projects" id="projects">
+            <div class="wrapper">
+                <h2>Projects</h2>
+                <div class="workgrid">
+            <!-- Self-Compassion LLM (Featured - Large) -->
+            <div class="workgrid__item workgrid__item--1">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Self-Compassion LLM Application
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--selfcompassion">
+                            <div class="project-image">
+                                <video src="images/videowalkthrough.webm" controls style="width:96%;height:96%;border-radius:2px;">
+                                </video>
+                            </div>
+                            🤗 LLM + Streamlit
+                        </div>
+                        <div class="project-metrics">
+                            Interactive web app • <a href="https://selfcompassion.streamlit.app/" target="_blank" style="color: var(--secondary-color);">view live →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BookBub -->
+            <div class="workgrid__item workgrid__item--2">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        BookBub Recommendations
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--bookbub">
+                            <div class="project-image">Project Image</div>
+                            ML Algorithms
+                        </div>
+                        <div class="project-metrics">
+                            <span class="metric-highlight">23%</span> user acquisition ↑
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="workgrid__item workgrid__item--1">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Dashboard
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--dashboard">
+                            <div class="project-image">
+                                <iframe src = 'images/'
+                                <!-- <video src="images/videowalkthrough.webm" controls style="width:96%;height:96%;border-radius:2px;"> -->
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            📈 Dashboard • <a href="https://selfcompassion.streamlit.app/" target="_blank" style="color: var(--secondary-color);">view live →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cape Analytics -->
+            <div class="workgrid__item workgrid__item--3">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Cape Analytics Scaling
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--cape">
+                            <div class="project-image">Project Image</div>
+                            CV + ML
+                        </div>
+                        <div class="project-metrics">
+                            <span class="metric-highlight">1,000%</span> capacity ↑
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Infrastructure -->
+            <div class="workgrid__item workgrid__item--4">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Data Infrastructure & Pipelines
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--pipeline">
+                            <div class="project-image">Architecture Diagram</div>
+                            PostgreSQL • Python • ETL
+                        </div>
+                        <div class="project-metrics">
+                            <span class="metric-highlight">400%</span> throughput increase
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cruise -->
+            <div class="workgrid__item workgrid__item--5">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Cruise ML Infrastructure
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--cruise">
+                            <div class="project-image">Infrastructure</div>
+                            MLOps
+                        </div>
+                        <div class="project-metrics">
+                            <span class="metric-highlight">50%</span> cost reduction
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hopelab -->
+            <div class="workgrid__item workgrid__item--6">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Hopelab UX Analytics
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--hopelab">
+                            <div class="project-image">Analytics Dashboard</div>
+                            UX Data
+                        </div>
+                        <div class="project-metrics">
+                            Mental health tech insights
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- A/B Testing & Stats -->
+            <div class="workgrid__item workgrid__item--7">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Experimentation & Statistical Analysis
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--pipeline">
+                            <div class="project-image">Statistical Charts</div>
+                            📊 A/B Testing • Statistics
+                        </div>
+                        <div class="project-metrics">
+                            Product optimization • Rigorous analysis
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MusiPy -->
+            <div class="workgrid__item workgrid__item--8">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        🎵 MusiPy<br>
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--fieldwork">
+                            <div class="project-image"> Music Recommendation App</div>
+                            Flask
+                        </div>
+                        <div class="project-metrics">
+                            Machine Learning • Web App
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Background -->
+            <div class="workgrid__item workgrid__item--9">
+                <div class="workgrid__item__container">
+                    <div class="workgrid__item__title">
+                        Academic Research
+                    </div>
+                    <div class="workgrid__item__content">
+                        <div class="project-visual project-visual--academic">
+                            <div class="project-image">Research Paper</div>
+                            Ph.D. Psychology
+                        </div>
+                        <div class="project-metrics">
+                            Quantitative methods • Columbia
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <hr>
+    <!-- SKILLS SECTION -->
+    <section class="skills">
+        <div class="wrapper">
+            <h2 id="skills">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Analytics & Statistics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Looker</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Experimentation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming & Data</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">BigQuery</span>
+                        <span class="skill-tag">R</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">LLM</span>
+                        <span class="skill-tag">Deep Learning</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>UX Research & Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">User Analytics</span>
+                        <span class="skill-tag">Survey Design</span>
+                        <span class="skill-tag">Behavioral Analysis</span>
+                        <span class="skill-tag">Product Metrics</span>
+                        <span class="skill-tag">Quantitative UX</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Technical Product Management</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Product Strategy</span>
+                        <span class="skill-tag">Roadmap Planning</span>
+                        <span class="skill-tag">Cross-functional Leadership</span>
+                        <span class="skill-tag">Stakeholder Management</span>
+                        <span class="skill-tag">Technical Strategy</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Infrastructure & Cloud</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">dbt</span>
+                        <span class="skill-tag">Airflow</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Snowflake</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="wrapper">
+        <hr class="section-separator">
+    </div>
+    <!-- CONTACT SECTION -->
+    <!-- ACADEMIC RESEARCH SECTION -->
+    <section class="academic-research" id="academic-research">
+        <div class="wrapper">
+            <h2>Selected Publications</h2>
+            <p><li>See <a href="https://scholar.google.com/citations?user=F3Rz0f0AAAAJ&hl=en" target="_blank" class="contact-link" style="font-weight:500;color:#a0aecd;text-decoration:underline;">Google Scholar Profile</a> for a comprehensive publication list.</p>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="wrapper">
+        <hr class="section-separator">
+    </div>
+        
+    <!-- PODCAST SECTION -->
+    <section class="podcast" id="podcast">
+        <div class="wrapper">
+            <h2>Podcast</h2>
+            <p><li> I'm a podcast host on <a href="https://newbooksnetwork.com/" target="_blank" class="contact-link" style="font-weight:500;color:#a0aecd;text-decoration:underline;">New Books Network</a></p>
+            <br
+            <!-- Add podcast embed or links here -->
+        </div>
+    </section>
+    <section class="contact">
+        <div class="wrapper">
+            <h2 id="contact">Get In Touch</h2>
+            <p style="color: #666666;">I'm always interested in discussing data science opportunities, challenging problems, or potential collaborations! Please feel free to contact me if you'd like to connect 📧. </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <section class="footer">
+        <div class="wrapper">
+            <div class="footer__content">
+                <div>
+                    <a href="/">⌂</a>
+                    <a href="mailto:jennifermadisonwang@gmail.com"><i class="fas fa-envelope"></i> email</a>
+                    <a href="https://linkedin.com/in/jennifermwangphd"><i class="fab fa-linkedin"></i> linkedin</a>
+                    <a href="https://github.com/wangjenn"><i class="fab fa-github"></i> github</a>
+                    <a href="https://scholar.google.com/citations?user=F3Rz0f0AAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> google scholar</a>
+                </div>
+                <p><span style="color: #666666;">made in san francisco ❥</span></p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+
+        // Workgrid interactions
+        document.querySelectorAll('.workgrid__item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const title = this.querySelector('.workgrid__item__title');
+                if (title && title.textContent.includes('self-compassion')) {
+                    window.open('https://selfcompassion.streamlit.app/', '_blank');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
