@@ -95,6 +95,7 @@ Quantitative methods • Columbia
 
 ---
 
+<a id="education"></a>
 ## Education 
 - Ph.D., Quantitative Psychology, University of Maryland-College Park
 - B.A., Psychology (with honors), University of Southern California
